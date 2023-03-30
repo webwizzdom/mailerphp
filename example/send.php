@@ -1,17 +1,19 @@
 <?php
 include "../src/mail.class.php";
-$mailer = new MailerPhp();
-$mailer->smtpHost = 'smtp.gmail.com';
-$mailer->smtpPort = 587;
-$mailer->smtpUsername = 'your-email@gmail.com';
-$mailer->smtpPassword = 'your-email-password';
-$mailer->fromEmail = 'your-email@gmail.com';
-$mailer->fromName = 'Your Name';
 
-$toEmail = 'recipient-email@example.com';
+$mailer = new MailerPhp();
+$mailer->setSmtpHost('smtp.gmail.com');
+$mailer->setSmtpPort(587);
+$mailer->setSmtpUsername('yourEmail@gmail.com');
+$mailer->setSmtpPassword('yourPassword');
+$mailer->setFromEmail('yourEmail@gmail.com');
+$mailer->setFromName('Your Name');
+$mailer->setSmtpSecure('tls');
+
+$toEmail = 'toEmail@mail.com';
 $toName = 'Recipient Name';
 $subject = 'Test Email';
-$body = 'This is a test email sent using PHP Mailer.';
+$body = 'This is a test email sent using Mailer PHP.';
 
 $result = $mailer->sendEmail($toEmail, $toName, $subject, $body);
 
