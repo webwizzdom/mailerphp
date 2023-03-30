@@ -12,26 +12,31 @@ To use MailerPhp, you need to create an instance of the class and set the necess
 
 ## Example
 ``` php
-  require_once 'path/to/vendor/autoload.php';
+    require_once 'path/to/vendor/autoload.php';
 
-  use username\MailerPhp;
+    use username\MailerPhp;
 
-  $mailer = new MailerPhp();
-  $mailer->smtpHost = 'smtp.gmail.com';
-  $mailer->smtpPort = 587;
-  $mailer->smtpUsername = 'your-email@gmail.com';
-  $mailer->smtpPassword = 'your-email-password';
-  $mailer->fromEmail = 'your-email@gmail.com';
-  $mailer->fromName = 'Your Name'; 
+  
+    $mailer = new MailerPhp();
+    $mailer->setSmtpHost('smtp.gmail.com');
+    $mailer->setSmtpPort(587);
+    $mailer->setSmtpUsername('yourEmail@gmail.com');
+    $mailer->setSmtpPassword('yourPassword');
+    $mailer->setFromEmail('yourEmail@gmail.com');
+    $mailer->setFromName('Your Name');
+    $mailer->setSmtpSecure('tls');
+
+   
+
 ```
 To send an email, you can use the sendEmail method:
 
 
 ``` php
-  $toEmail = 'recipient-email@example.com';
+  $toEmail = 'toEmail@mail.com';
   $toName = 'Recipient Name';
   $subject = 'Test Email';
-  $body = 'This is a test email sent using PHP Mailer.';
+  $body = 'This is a test email sent using Mailer PHP.';
 
   $result = $mailer->sendEmail($toEmail, $toName, $subject, $body);
 
@@ -45,7 +50,7 @@ To retrieve emails, you can use the getEmails method:
 
 
 ```php
-  $emails = $mailer->getEmails();
+  $emails = $mailer->retrieveEmails();
 
   foreach ($emails as $email) {
       echo 'From: ' . $email['headers']['From'] . '<br>';
@@ -60,7 +65,7 @@ Options
 The getEmails method accepts several options:
 
 ``` php
-  $emails = $mailer->getEmails([
+  $emails = $mailer->retrieveEmails([
       'limit' => 10,
       'offset' => 0,
       'search' => 'example.com',
